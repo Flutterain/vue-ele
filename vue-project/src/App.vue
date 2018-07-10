@@ -18,7 +18,21 @@
 
 <script>
   import header from './components/header/header'
+  import {urlParse} from './common/js/util.js'
   export default {
+    // data() {
+    //   return {
+    //     seller:{
+    //       id: (() => {
+    //         let queryParam = urlParse();
+    //         return queryParma.id
+    //       })
+    //     }
+    //   }
+    // },
+    // created() {
+    //   this.$axios.get('/api/seller')
+    // },
     components:{
       'ele-header':header
     }
