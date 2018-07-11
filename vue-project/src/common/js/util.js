@@ -18,8 +18,8 @@
       let value = decodeURIComponent(tempArr[1]);
       obj[key] = value;
     })
-    return obj;
    }
+   return obj;
  }
 
 
