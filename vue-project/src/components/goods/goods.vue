@@ -44,8 +44,18 @@
         response = response.data;
         if(response.errno === ERR_OK) {
           this.goods = response.data;
+          this.$nextTick(() => {
+            this._initScroll();
+          })
         }
       })
+    },
+    methods: {
+      _initScroll() {
+        this.meunScroll = new BScroll(this.$refs.menuwrapper, {
+          click: true
+        }); 
+      }
     }
   }
 </script>
