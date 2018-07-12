@@ -1,8 +1,8 @@
 <template>
   <div class="goods">
-    <div class="menu-wrapper">
+    <div class="menu-wrapper" ref="menuWrapper">
       <ul>
-        <li v-for="(item , index) in menu" :key="index" :class="{current:currentIndex === index}">
+        <li v-for="(item , index) in goods" :key="index" :class="{'current':currentIndex === index}">
           <span class="text">
             <span class="icon" v-show="item.type > 0" :class="classMap[item.type]"></span>
           </span>
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+  import BScroll from 'better-scroll';
   const ERR_OK = 0;
 
   export default {
