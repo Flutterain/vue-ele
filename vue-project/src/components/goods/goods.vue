@@ -14,7 +14,7 @@
         <li v-for="(item , index) in goods" :key="index" class="food-list food-list-hook">
           <h3 class="title">{{item.name}}</h3>
           <ul>
-            <li v-for="(food ,index) in item.foods" :key="index" class="food-item">
+            <li v-for="(food ,index) in item.foods" :key="index" class="food-item" >
               <div class="icon">
                 <img :src="food.icon" width="57" height="57" alt="">
               </div>
@@ -40,13 +40,16 @@
         </li>
       </ul>
     </div>
-
+    <shopcart></shopcart>
+    <food :food="selectFood" refs='food'></food>
   </div>
 </template>
 
 <script>
   import BScroll from 'better-scroll';
   import cartcontrol from '../cartcontrol/cartcontrol.vue'
+  import food from '../food/food.vue'
+  import shopcart from '../shopcart/shopcat.vue'
   const ERR_OK = 0;
 
   export default {
@@ -84,8 +87,7 @@
         for(let i=0; i < this.listHeight.length; i++) {
           let height1 = this.listHeight[i];
           let height2 = this.listHeight[i+1];
-          if(!height2 || (this.scrollY > height1 && this.scrollY < height2)) {
-
+          if(!height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
             return i
           }
         }
@@ -130,13 +132,19 @@
         // 获取对应元素的列表
         let el = foodList[index];
         // 设置滚动时间
-        this.foodScroll.scrollToElement(el,300);
+        this.foodScroll.scrollToElement(el,500);
+
+      },
+
+      selectFood() {
 
       }
     },
 
     components: {
-      cartcontrol
+      cartcontrol,
+      food,
+      shopcart
     }
   }
 </script>
@@ -148,8 +156,8 @@
     position absolute
     top 174px
     bottom 46px
-    overflow hidden
     width 100%
+    overflow hidden
     .menu-wrapper
       flex 0 0 80px
       width 80px
@@ -162,9 +170,13 @@
         line-height 14px  
         text-align center
         &.current
+          position relative
+          z-index  10
           margin-top -1px
           background-color #fff
           font-weight 700
+          .text
+            border-none()
         .icon
           display inline-block
           vertical-align top
@@ -187,8 +199,8 @@
           display table-cell
           width 56px
           vertical-align middle
-          font-size 12px
           border-1px(rgba(7, 17, 27, .1))
+          font-size 12px
     .food-wrapper
       flex 1
       .title
@@ -210,6 +222,7 @@
         .icon
           flex 0 0 57px
         .content
+          flex 1
           margin-left 10px
           margin-top 2px
           .name
@@ -242,5 +255,9 @@
               text-decoration line-through
               font-size 10px 
               color rgb(147, 153, 159)
-                    
+          .control-wrapper
+            position absolute
+            right 0
+            bottom 12px
+
 </style>
