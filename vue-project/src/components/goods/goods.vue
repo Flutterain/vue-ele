@@ -40,7 +40,7 @@
         </li>
       </ul>
     </div>
-    <shopcart></shopcart>
+    <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
     <food :food="selectFood" refs='food'></food>
   </div>
 </template>
@@ -92,6 +92,10 @@
           }
         }
         return 0
+      },
+
+      selectFoods() {
+        let foods = [];
       }
 
     },
