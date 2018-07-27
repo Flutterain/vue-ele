@@ -37,7 +37,8 @@
         }
         this.food.count--;
       }
-    }
+    },
+
   }
 </script>
 
